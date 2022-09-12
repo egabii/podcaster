@@ -1,19 +1,12 @@
-interface IClientCacheItem {
-  lastFetchDate: string, // it should 24hours 
-  contents: []
-}
-const defaultEmptyItem = JSON.stringify({
-  lastFetchDate: '',
-  contents: []
-});
+import { IClientCacheItem, defaultEmptyItemStringify } from './client.cache.types';
 
 export function getItem (keyMapper: string): IClientCacheItem  {
-  return JSON.parse(localStorage.getItem(keyMapper) ?? defaultEmptyItem);
+  return JSON.parse(localStorage.getItem(keyMapper) ?? defaultEmptyItemStringify);
 }
 
 export function saveItem(keyMapper: string, contents: unknown): IClientCacheItem {
   try {
-    const alreadyItem = JSON.parse(localStorage.getItem(keyMapper) ?? defaultEmptyItem);
+    const alreadyItem = JSON.parse(localStorage.getItem(keyMapper) ?? defaultEmptyItemStringify);
     if (alreadyItem.contents.length === 0) {
       const date = new Date();
       const stringifyItem = JSON.stringify({

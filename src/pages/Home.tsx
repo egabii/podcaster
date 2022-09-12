@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useQuery } from 'react-query'
-import { Badge, Box, Flex, Input, SimpleGrid, Text } from '@chakra-ui/react'
+import { Badge, Box, Flex, Input, SimpleGrid } from '@chakra-ui/react'
 import { IPodcastList } from '../providers/podcasts/podcasts.type'
 import fetchPodcasts from '../providers/podcasts/fetchPodcast'
 import PodcastCard from '../components/PodcastCard'
@@ -47,10 +47,8 @@ export default function Home() {
           />
         </Flex>
       </Box>
-      <SimpleGrid columns={{ sm: 2, md: 4}} spacing={4}>
-        {renderList.map(podcast => <Box key={podcast.id} height='80px'>
-          <PodcastCard {...podcast} />
-        </Box>)}
+      <SimpleGrid columns={{ sm: 2, md: 4}} spacing={1}>
+        {renderList.map(podcast => <PodcastCard key={podcast.id} {...podcast} />)}
       </SimpleGrid>
     </>
 
