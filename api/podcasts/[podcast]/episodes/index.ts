@@ -1,28 +1,49 @@
 import fetch from 'node-fetch';
 import axios from 'axios';
+import { XMLParser } from 'fast-xml-parser';
 
-/**
- * TO-DO:  
- * fetch feedURL 
- * parse xml which comes from response 
- * grab first ~50 items which we need to work with (it seems to each feed has a lot of items more than a UI can handle)
- * define interface for podcast's eposides
- * 
- *  */ 
+interface IEnclosure {
+  url: string,
+  type: string,
+  length: number
+}
+interface IEpisode {
+  guid: number,
+  title: string,
+  description: string,
+  enclosure: IEnclosure,
+  duration: string,
+  image: string,
+  episodeNumber: number,
+  season: number 
+}
+
+const getDuration = (duration) => `${duration[0]}${duration[1]}:${duration[2]}${duration[3]}`
 export default async function handler(request, response) {
   try {
-    console.log(request.query.podcast)
-    const podcastResponse = await fetch(`https://itunes.apple.com/lookup?id=${request.query.podcast}`);
-    if (podcastResponse.ok) {
-      const data = await podcastResponse.json();
-      console.log(data);
-      const feedUrlResponse = await axios.get(data.results[0].feedUrl);
-      console.log(feedUrlResponse);
-    
-      return response.status(200).json({results: 'hola mundo'});
-    } else {
-      throw new Error('Error from provider');
-    }
+    const parser = new XMLParser({ ignoreAttributes: false });
+    const podcastResponse = await axios.get(`https://itunes.apple.com/lookup?id=${request.query.podcast}`);
+    const podcastData = podcastResponse.data;
+    const feedUrlResponse = await axios.get(podcastData.results[0].feedUrl);
+    let feedXMLData =  parser.parse(feedUrlResponse.data);
+    const episodes: IEpisode[] = feedXMLData.rss.channel.item.map(episode => {
+      return {
+        guid: episode.guid['#text'],
+        title: episode.title,
+        description: episode.description,
+        enclosure: {
+          url: episode.enclosure['@_url'],
+          length: episode.enclosure['@_length'],
+          type: episode.enclosure['@_type']
+        },
+        duration: episode['itunes:duration'], // no tengo idea!
+        image: episode['itunes:image']['@_href'],
+        episodeNumber: episode['itunes:episode'],
+        season: episode['itunes:season'] 
+      } 
+    });
+    console.log(episodes);
+    return response.status(200).json({results: episodes});
 
   }catch(error) {
     console.error(error);
