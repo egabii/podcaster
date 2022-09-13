@@ -15,7 +15,7 @@ function App() {
     gridTemplateRows: 'auto 1fr auto',
     gridTemplateColumns: '100%',
     maxW: '1920px',
-    h: '200px',
+    h: '100vh',
     color: 'blackAlpha.700',
     fontWeight: 'bold'
   }
@@ -32,7 +32,7 @@ function App() {
             <Route path="/podcast/:podcastId/episode/:episodeId" element={<Episode />} />
           </Routes>
         </GridItem>
-        <GridItem pl='2' pr='2' bg='blue.300' area={'footer'} as='footer'>
+        <GridItem area={'footer'} as='footer'  marginTop='1rem'>
           <Footer />
         </GridItem>
       </Grid>
