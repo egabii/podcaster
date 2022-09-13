@@ -13,7 +13,7 @@ export default function PodcastCard(props: IPodcastItem) {
       borderRadius='lg'
       overflow='hidden'
     >
-      <Link to={`/podcast/${props.id}`}>
+      <Link to={`/podcast/${props.id}`} state={{podcast: {...props}}}>
         <Image
           src={props.images[2].url}
           alt={`${props.name} - ${props.author}`}

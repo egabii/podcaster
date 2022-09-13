@@ -5,7 +5,7 @@ export interface IEnclosure {
 }
 
 export interface IEpisode {
-  guid: number,
+  guid: string,
   title: string,
   description: string,
   enclosure: IEnclosure,

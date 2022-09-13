@@ -42,7 +42,7 @@ export function DataTable<Data extends object>({
                 <Th
                   key={header.id}
                   isNumeric={meta?.isNumeric}
-                  fontWeight='semibold'
+                  fontWeight='bold'
                   fontSize='1rem'
                 >
                   {flexRender(
@@ -57,7 +57,7 @@ export function DataTable<Data extends object>({
       </Thead>
       <Tbody>
         {table.getRowModel().rows.map((row) => (
-          <Tr key={row.id}>
+          <Tr key={row.id} fontWeight='semibold'>
             {row.getVisibleCells().map((cell) => {
               const meta: any = cell.column.columnDef.meta;
               return (

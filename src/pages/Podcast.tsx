@@ -2,24 +2,35 @@ import { useEffect, useState } from 'react';
 import dayjs from 'dayjs'
 import { Box, Image, Stack, Text, StackDivider } from '@chakra-ui/react'
 import { useQuery } from 'react-query'
-import { useParams } from 'react-router-dom'
+import { useParams, useLocation, Link } from 'react-router-dom'
 import { createColumnHelper } from "@tanstack/react-table";
 import { DataTable } from "../components/DataTable";
-import { IPodcastList } from '../providers/podcasts/podcasts.type'
+import { IPodcastItem, IPodcastList } from '../providers/podcasts/podcasts.type'
 import { IEpisodesList, IEpisode } from '../providers/episodes/episodes.type'
 import fetchPodcasts from '../providers/podcasts/fetchPodcast'
 import fetchEpisodes from '../providers/episodes/fetchEpisodes'
 
 export default function Podcast() {
   let { podcastId } = useParams();
-  const { data:podcastList } = useQuery<IPodcastList, Error>('podcasts', fetchPodcasts);
-  const { isFetching: isFetchingEpisodes, data: episodesList } = useQuery<IEpisodesList, Error>(['episodes', podcastId], () => fetchEpisodes(podcastId));
-  const [selectedPodcast, setSelectedPodcast] = useState(null);
+  const location = useLocation();
+  const { data:podcastList } = useQuery<IPodcastList, Error>('podcasts', fetchPodcasts, {
+    enabled: !location.state?.podcast,
+  });
+  const { isLoading: isLoadingEpisodes, data: episodesList } = useQuery<IEpisodesList, Error>(['episodes', podcastId], () => fetchEpisodes(podcastId));
+  const [selectedPodcast, setSelectedPodcast] = useState<IPodcastItem | null>(location.state?.podcast ?? null);
   const columnHelper = createColumnHelper<IEpisode>();
 
   const columns = [
     columnHelper.accessor('title', {
-      cell: (info) => info.getValue(),
+      cell: (info) => (
+      <Link 
+        to={`/podcast/${podcastId}/episode/${info.row.original.guid}`} 
+        state={{podcast: selectedPodcast, episode: info.row.original }}
+      >
+        <Text color='blue.400' _hover={{ color: "blue.200" }}>
+          {info.getValue()}
+        </Text>
+      </Link>),
       header: 'Title'
     }),
     columnHelper.accessor('publishDate', {
@@ -89,8 +100,25 @@ export default function Podcast() {
         borderRadius='base'
         p='2rem'
       >
-        { isFetchingEpisodes && <h1>Loading....</h1> }
-        { episodesList && <DataTable columns={columns} data={episodesList} /> }
+        <Box 
+          border='1px' 
+          borderColor='gray.200' 
+          borderRadius='base'
+          marginBottom='1rem'
+          p='1rem'
+          bg={isLoadingEpisodes ? 'gray.200' : 'white'}
+        >
+          { episodesList && <Text fontSize='3xl' fontWeight='semibold'>Episodes: {episodesList.length}</Text> }
+        </Box>
+
+        <Box 
+          border='1px' 
+          borderColor='gray.200' 
+          borderRadius='base'
+          bg={isLoadingEpisodes ? 'gray.200' : 'white'}
+        >
+          { episodesList && <DataTable columns={columns} data={episodesList} /> }
+        </Box>
       </Box>
     </Stack>
   );
