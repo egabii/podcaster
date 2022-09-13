@@ -1,9 +1,12 @@
-import { useEffect, useState } from 'react'; 
+import { useEffect, useState } from 'react';
+import dayjs from 'dayjs'
 import { Box, Image, Stack, Text, StackDivider } from '@chakra-ui/react'
 import { useQuery } from 'react-query'
 import { useParams } from 'react-router-dom'
+import { createColumnHelper } from "@tanstack/react-table";
+import { DataTable } from "../components/DataTable";
 import { IPodcastList } from '../providers/podcasts/podcasts.type'
-import { IEpisodesList } from '../providers/episodes/episodes.type'
+import { IEpisodesList, IEpisode } from '../providers/episodes/episodes.type'
 import fetchPodcasts from '../providers/podcasts/fetchPodcast'
 import fetchEpisodes from '../providers/episodes/fetchEpisodes'
 
@@ -12,6 +15,25 @@ export default function Podcast() {
   const { data:podcastList } = useQuery<IPodcastList, Error>('podcasts', fetchPodcasts);
   const { isFetching: isFetchingEpisodes, data: episodesList } = useQuery<IEpisodesList, Error>(['episodes', podcastId], () => fetchEpisodes(podcastId));
   const [selectedPodcast, setSelectedPodcast] = useState(null);
+  const columnHelper = createColumnHelper<IEpisode>();
+
+  const columns = [
+    columnHelper.accessor('title', {
+      cell: (info) => info.getValue(),
+      header: 'Title'
+    }),
+    columnHelper.accessor('publishDate', {
+      cell: (info) => dayjs(info.getValue()).format('DD/MM/YYYY'),
+      header: 'Date'
+    }),
+    columnHelper.accessor('duration', {
+      cell: (info) => info.getValue(),
+      header: 'Duration',
+      meta: {
+        isNumeric: true
+      }
+    })
+  ];
 
   useEffect(() => {
     if (podcastList) {
@@ -68,9 +90,7 @@ export default function Podcast() {
         p='2rem'
       >
         { isFetchingEpisodes && <h1>Loading....</h1> }
-        { episodesList && <ul>
-          {episodesList.map(episode => <li key={episode.guid}>{episode.title}</li>)}  
-        </ul>}
+        { episodesList && <DataTable columns={columns} data={episodesList} /> }
       </Box>
     </Stack>
   );

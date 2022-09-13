@@ -12,7 +12,8 @@ export interface IEpisode {
   duration: string,
   image: string,
   episodeNumber: number,
-  season: number 
+  season: number,
+  publishDate: string
 }
 
 export type IEpisodesList = IEpisode[]; 
