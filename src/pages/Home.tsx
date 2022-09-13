@@ -36,7 +36,7 @@ export default function Home() {
     <>
       <Box as='section' p='4'>
         <Flex justify='flex-end' align='center'>
-          <Badge borderRadius='full' px='2' textAlign='center' colorScheme='teal' w='40px'>
+          <Badge borderRadius='full' px='2' textAlign='center' colorScheme='teal' w='50px' fontSize='1rem'>
             {renderList.length}
           </Badge>
           <Input 

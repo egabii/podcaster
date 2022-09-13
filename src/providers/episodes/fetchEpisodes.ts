@@ -16,8 +16,9 @@ export default async function fetchEpisodes(podcastId) {
     } else {  
       episodesList = item.contents;
     }
-    return episodesList
   }catch(error) {
     console.error(error);
+  } finally {
+    return episodesList;
   }
 };
