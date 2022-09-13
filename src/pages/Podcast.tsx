@@ -2,17 +2,18 @@ import { useEffect, useState } from 'react';
 import dayjs from 'dayjs'
 import { Box, Image, Stack, Text, StackDivider } from '@chakra-ui/react'
 import { useQuery } from 'react-query'
-import { useParams, useLocation, Link } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 import { createColumnHelper } from "@tanstack/react-table";
 import { DataTable } from "../components/DataTable";
 import { IPodcastItem, IPodcastList } from '../providers/podcasts/podcasts.type'
 import { IEpisodesList, IEpisode } from '../providers/episodes/episodes.type'
 import fetchPodcasts from '../providers/podcasts/fetchPodcast'
 import fetchEpisodes from '../providers/episodes/fetchEpisodes'
+import useLocationPodcast from '../hooks/useLocationPodcast'
 
 export default function Podcast() {
   let { podcastId } = useParams();
-  const location = useLocation();
+  const location = useLocationPodcast();
   const { data:podcastList } = useQuery<IPodcastList, Error>('podcasts', fetchPodcasts, {
     enabled: !location.state?.podcast,
   });
@@ -91,11 +92,11 @@ export default function Podcast() {
       </Box>
       <Box 
         as='section'  
-        w={['100%', '70%']} 
-        border='1px' 
+        w={['100%', '70%']}  
         borderColor='gray.200' 
         borderRadius='base'
-        p='2rem'
+        pl='2rem'
+        pr='2rem'
       >
         <Box 
           border='1px' 
