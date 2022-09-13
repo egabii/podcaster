@@ -39,10 +39,7 @@ export default function Podcast() {
     }),
     columnHelper.accessor('duration', {
       cell: (info) => info.getValue(),
-      header: 'Duration',
-      meta: {
-        isNumeric: true
-      }
+      header: 'Duration'
     })
   ];
 
@@ -115,6 +112,7 @@ export default function Podcast() {
           border='1px' 
           borderColor='gray.200' 
           borderRadius='base'
+          p='1rem'
           bg={isLoadingEpisodes ? 'gray.200' : 'white'}
         >
           { episodesList && <DataTable columns={columns} data={episodesList} /> }
