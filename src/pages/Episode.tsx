@@ -1,17 +1,17 @@
 import { useEffect, useState } from 'react';
 import { Box, Image, Stack, Text, StackDivider } from '@chakra-ui/react'
 import { useQuery } from 'react-query'
-import { useParams, useLocation, Link } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 import parser from 'html-react-parser';
 import { IPodcastItem, IPodcastList } from '../providers/podcasts/podcasts.type'
 import { IEpisodesList, IEpisode } from '../providers/episodes/episodes.type'
 import fetchPodcasts from '../providers/podcasts/fetchPodcast'
 import fetchEpisodes from '../providers/episodes/fetchEpisodes'
-
+import useLocationPodcast from '../hooks/useLocationPodcast'
 
 export default function Episode() {
   let { podcastId, episodeId } = useParams();
-  const location = useLocation();
+  const location = useLocationPodcast();
   const { isLoading: isLoadingPodcasts, data: podcastList } = useQuery<IPodcastList, Error>('podcasts', fetchPodcasts, {
     enabled: !location.state?.podcast
   });
