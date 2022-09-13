@@ -1,12 +1,11 @@
 import { useEffect, useState } from 'react'
-import { useQuery } from 'react-query'
 import { Badge, Box, Flex, Input, SimpleGrid } from '@chakra-ui/react'
 import { IPodcastList } from '../providers/podcasts/podcasts.type'
-import fetchPodcasts from '../providers/podcasts/fetchPodcast'
 import PodcastCard from '../components/PodcastCard'
+import usePodcasts from '../hooks/usePodcasts';
 
 export default function Home() {
-  const { isFetching, data:podcastList } = useQuery<IPodcastList, Error>('podcasts', fetchPodcasts);
+  const { isLoading, data:podcastList } = usePodcasts();
   const [renderList, setRenderList] = useState<IPodcastList>([]);
   const [searchItem, setSearchItems] = useState<string>('');
 
@@ -30,7 +29,7 @@ export default function Home() {
    setSearchItems(e.target.value)
   };
 
-  if (isFetching) return <h1>Loading ...</h1>
+  if (isLoading) return <h1>Loading ...</h1>
 
   return (
     <>

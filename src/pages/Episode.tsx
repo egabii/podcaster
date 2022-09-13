@@ -1,25 +1,18 @@
 import { useEffect, useState } from 'react';
 import { Box, Image, Stack, Text, StackDivider } from '@chakra-ui/react'
-import { useQuery } from 'react-query'
 import { useParams, Link } from 'react-router-dom'
 import parser from 'html-react-parser';
-import { IPodcastItem, IPodcastList } from '../providers/podcasts/podcasts.type'
-import { IEpisodesList, IEpisode } from '../providers/episodes/episodes.type'
-import fetchPodcasts from '../providers/podcasts/fetchPodcast'
-import fetchEpisodes from '../providers/episodes/fetchEpisodes'
-import useLocationPodcast from '../hooks/useLocationPodcast'
+import { IPodcastItem } from '../providers/podcasts/podcasts.type'
+import { IEpisode } from '../providers/episodes/episodes.type'
+import useEpisodes from '../hooks/useEpisodes';
+import usePodcasts from '../hooks/usePodcasts';
 
 export default function Episode() {
   let { podcastId, episodeId } = useParams();
-  const location = useLocationPodcast();
-  const { isLoading: isLoadingPodcasts, data: podcastList } = useQuery<IPodcastList, Error>('podcasts', fetchPodcasts, {
-    enabled: !location.state?.podcast
-  });
-  const { isLoading: isLoadingEpisodes, data: episodesList } = useQuery<IEpisodesList, Error>(['episodes', podcastId], () => fetchEpisodes(podcastId), {
-    enabled: !location.state?.episode
-  });
-  const [selectedEpisode, setSelectedEpisode] = useState<IEpisode | null>(location.state?.episode ?? null);
-  const [selectedPodcast, setSelectedPodcast] = useState<IPodcastItem | null>(location.state?.podcast ?? null);
+  const { isLoading: isLoadingPodcasts, data: podcastList } = usePodcasts();
+  const { isLoading: isLoadingEpisodes, data: episodesList } = useEpisodes(podcastId);
+  const [selectedEpisode, setSelectedEpisode] = useState<IEpisode | null>(null);
+  const [selectedPodcast, setSelectedPodcast] = useState<IPodcastItem | null>( null);
 
   useEffect(() => {
     if (episodesList) {

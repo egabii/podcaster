@@ -13,19 +13,19 @@ export default function PodcastCard(props: IPodcastItem) {
       borderRadius='lg'
       overflow='hidden'
     >
-      <Link to={`/podcast/${props.id}`} state={{podcast: {...props}}}>
+      <Link to={`/podcast/${props.id}`} state={{podcast: {...props}}} style={{margin: '0 auto'}}>
         <Image
           src={props.images[2].url}
           alt={`${props.name} - ${props.author}`}
           margin='auto'
           objectFit='cover'
+          border='1px'
           borderRadius='full'
         />
         <Stack
-          align={{ md: "center" }}
-          textAlign={{ md: "center" }}
+          align={{ base: "center", md: "center" }}
+          textAlign={{ base: "center", md: "center" }}
           mt={{ base: 4, md: 0 }}
-          ml={{ md: 6 }}
         >
           <Tooltip label={props.name}>
             <Text as='h4' noOfLines={1}>

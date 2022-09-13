@@ -12,7 +12,7 @@ export default function Header() {
         </Link>
       </Box>
       <Box>
-        { isFetching >  0 && <CircularProgress isIndeterminate color='green.300' size='35px' />}
+        { isFetching ? <CircularProgress isIndeterminate color='green.300' size='35px' />  : null}
       </Box>
     </Flex>
   );

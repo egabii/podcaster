@@ -54,10 +54,9 @@ export default function Podcast() {
 
 
   return (
-    <Stack direction={['column', 'row']} spacing={8} marginTop='1rem'>
-      <Box as='aside' w={['100%', '30%']} border='1px' borderRadius='base' borderColor='gray.200' p='2rem'>
+    <Stack direction={{sm:'column', md:'row'}} spacing={8} marginTop='1rem'>
+      <Box as='aside' w={{sm:'100%', md:'30%'}} border='1px' borderRadius='base' borderColor='gray.200' p='2rem'>
         <Stack
-          align={{ md: "center" }}
           textAlign={{ md: "left" }}
           mt={{ base: 4, md: 0 }}
           ml={{ md: 6 }}
@@ -91,8 +90,8 @@ export default function Podcast() {
         </Stack>
       </Box>
       <Box 
-        as='section'  
-        w={['100%', '70%']}  
+        as='section'
+        w={{sm:'100%', md:'70%'}}
         borderColor='gray.200' 
         borderRadius='base'
         pl='2rem'

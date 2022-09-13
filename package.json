@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "dev:vercel": "vercel dev",
+    "dev:vercel": "vercel dev --yes",
     "prod:vercel": "vercel --prod"
   },
   "dependencies": {
