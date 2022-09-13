@@ -1,6 +1,6 @@
 # Proyecto: Podcaster
 
-## Objetivos:
+## Requerimientos (bien resumido):
 
 * Obtener una lista de los 100 top podcasts de itunes
 * Obtener de cada podcast una lista de episodios
