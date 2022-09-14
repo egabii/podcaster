@@ -27,9 +27,7 @@ export default function useQueryStorage(id: string) {
 
   const setPreference = useCallback((newPref: any) => {
       saveItem(id, newPref);
-      queryClient.invalidateQueries((query): boolean => {
-        return isEqual(query.queryKey, queryKey);
-      });
+      queryClient.invalidateQueries(queryKey);
     },
     [id, queryKey]
   );

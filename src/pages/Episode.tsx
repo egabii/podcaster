@@ -4,8 +4,8 @@ import { useParams, Link } from 'react-router-dom'
 import parser from 'html-react-parser';
 import { IPodcastItem } from '../providers/podcasts/podcasts.type'
 import { IEpisode } from '../providers/episodes/episodes.type'
-import useEpisodes from '../hooks/useEpisodes';
-import usePodcasts from '../hooks/usePodcasts';
+import useEpisodes from '../hooks/useEpisodes'
+import usePodcasts from '../hooks/usePodcasts'
 
 export default function Episode() {
   let { podcastId, episodeId } = useParams();
@@ -25,10 +25,10 @@ export default function Episode() {
 
 
   return (
-    <Stack direction={['column', 'row']} spacing={8} marginTop='1rem'>
+    <Stack direction={{sm:'column', md:'row'}} spacing={8} marginTop='1rem'>
       <Box
         as='aside'
-        w={['100%', '30%']}
+        w={{sm:'100%', md:'30%'}} 
         border='1px'
         borderRadius='base'
         borderColor='gray.200'
@@ -73,7 +73,7 @@ export default function Episode() {
       </Box>
       <Box
         as='section'
-        w={['100%', '70%']}
+        w={{sm:'100%', md:'70%'}} 
         border='1px'
         borderColor='gray.200'
         borderRadius='base'
