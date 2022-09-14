@@ -31,7 +31,7 @@ export function DataTable<Data extends object>({
   });
 
   return (
-    <TableContainer>
+    <TableContainer overflowX='hidden' whiteSpace='normal'>
       <Table>
         <Thead>
           {table.getHeaderGroups().map((headerGroup) => (

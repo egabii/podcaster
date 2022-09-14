@@ -99,7 +99,6 @@ export default function Podcast() {
         w={{ sm: '100%', md: '70%' }}
         borderColor='gray.200'
         borderRadius='base'
-        p={{ sm: '1.25rem', md: '2rem' }}
       >
         <Box
           border='1px'

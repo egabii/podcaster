@@ -77,7 +77,7 @@ export default function Episode() {
         border='1px'
         borderColor='gray.200'
         borderRadius='base'
-        p={{ sm: '1.25rem', md: '2rem' }}
+        p={{ base: '1.25rem', md: '2rem'}}
         bg={isLoadingEpisodes ? 'gray.100' : 'white'}
       >
         {selectedEpisode && (
