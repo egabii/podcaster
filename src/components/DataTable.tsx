@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Table, Thead, Tbody, Tr, Th, Td } from "@chakra-ui/react";
+import { TableContainer, Table, Thead, Tbody, Tr, Th, Td } from "@chakra-ui/react";
 import {
   useReactTable,
   flexRender,
@@ -31,40 +31,43 @@ export function DataTable<Data extends object>({
   });
 
   return (
-    <Table>
-      <Thead>
-        {table.getHeaderGroups().map((headerGroup) => (
-          <Tr key={headerGroup.id}>
-            {headerGroup.headers.map((header) => {
-              return (
-                <Th
-                  key={header.id}
-                  fontWeight='bold'
-                  fontSize='1rem'
-                >
-                  {flexRender(
-                    header.column.columnDef.header,
-                    header.getContext()
-                  )}
-                </Th>
-              );
-            })}
-          </Tr>
-        ))}
-      </Thead>
-      <Tbody>
-        {table.getRowModel().rows.map((row) => (
-          <Tr key={row.id} fontWeight='semibold'>
-            {row.getVisibleCells().map((cell) => {
-              return (
-                <Td key={cell.id}>
-                  {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                </Td>
-              );
-            })}
-          </Tr>
-        ))}
-      </Tbody>
-    </Table>
+    <TableContainer>
+      <Table>
+        <Thead>
+          {table.getHeaderGroups().map((headerGroup) => (
+            <Tr key={headerGroup.id}>
+              {headerGroup.headers.map((header) => {
+                return (
+                  <Th
+                    key={header.id}
+                    fontWeight='bold'
+                    fontSize='1rem'
+                  >
+                    {flexRender(
+                      header.column.columnDef.header,
+                      header.getContext()
+                    )}
+                  </Th>
+                );
+              })}
+            </Tr>
+          ))}
+        </Thead>
+        <Tbody>
+          {table.getRowModel().rows.map((row) => (
+            <Tr key={row.id} fontWeight='semibold'>
+              {row.getVisibleCells().map((cell) => {
+                return (
+                  <Td key={cell.id}>
+                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                  </Td>
+                );
+              })}
+            </Tr>
+          ))}
+        </Tbody>
+      </Table>
+    </TableContainer>
+
   );
 }
