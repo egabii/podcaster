@@ -25,14 +25,14 @@ export default function Episode() {
 
 
   return (
-    <Stack direction={{sm:'column', md:'row'}} spacing={8} marginTop='1rem'>
+    <Stack direction={{ base: 'column', md: 'row' }} spacing={8} marginTop='1rem'>
       <Box
         as='aside'
         w={{sm:'100%', md:'30%'}} 
         border='1px'
         borderRadius='base'
         borderColor='gray.200'
-        p='2rem'
+        p={{ sm: '1.25rem', md: '2rem' }}
         bg={isLoadingPodcasts ? 'gray.100' : 'white'}
       >
         {selectedPodcast && <Link to={`/podcast/${podcastId}`}>
@@ -77,7 +77,7 @@ export default function Episode() {
         border='1px'
         borderColor='gray.200'
         borderRadius='base'
-        p='2rem'
+        p={{ sm: '1.25rem', md: '2rem' }}
         bg={isLoadingEpisodes ? 'gray.100' : 'white'}
       >
         {selectedEpisode && (
