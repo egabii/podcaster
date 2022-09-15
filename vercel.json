@@ -1,7 +1,7 @@
 {
-	"github": {
-		"silent": true
-	},
+  "github": {
+    "silent": true
+  },
   "routes": [
     { "handle": "filesystem" },
     {
@@ -9,10 +9,10 @@
       "dest": "/index.html"
     }
   ],
-	"rewrites": [
-		{
-			"source": "(.*)",
-			"destination": "/"
-		}
-	]
+  "rewrites": [
+    {
+      "source": "(.*)",
+      "destination": "/"
+    }
+  ]
 }
