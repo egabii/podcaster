@@ -2,13 +2,6 @@
   "github": {
     "silent": true
   },
-  "routes": [
-    { "handle": "filesystem" },
-    {
-      "src": "/((?!api/.*).*)",
-      "dest": "/index.html"
-    }
-  ],
   "rewrites": [
     {
       "source": "(.*)",
