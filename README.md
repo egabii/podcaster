@@ -16,7 +16,7 @@ La applicacion web es una SPA (o Single Page Application), la cual esta siendo d
 * [React router v6](https://reactrouter.com/en/main) para el manejod de las rutas en la UI
 * [Chakra UI](https://chakra-ui.com/) framework con un set de componentes listo para el desarrollo
 
-### Vercel api routes como API 
+## Vercel api routes como API 
 
 Al realizar el analisis de los requerimientos y notar que debemos utilizar varios servicios de dominio publico, encontrandome con el inconveniente de que las respuestas contenian informacion adicional que no hacian al objetivo del proyecto. Me dispuse a investigar como manipular el resultado de dichos servicios a traves de una API Rest. En adicion a esto, los episodios se encuentran en un feed de rss, cuyo formato de respues es **XML**, llevando a ser costosa la manipulacion de dicho tipo de documento en la UI.
 
@@ -26,7 +26,18 @@ Llegando a una version rapida en desarrollo con vercel api routes.
 * [Vercel development](https://vercel.com/docs/concepts/functions/serverless-functions)
 * [Vercel cli](https://vercel.com/docs/cli)
 
+
 *Disclaimer: A pesar de la ventaja de poder consumir una sola API, condiciona el uso de Vercel como proveedor*
+
+### Deployment
+A consecuencia del uso del api routes como solucion para consumir los servicios de podcasts, debemos 
+usar [vercel](https://vercel.com) y para que la SPA funcione en un ambiente de despliegue, necesitamos del archivo `vercel.json`
+para que sobreescriba las rutas manejadas por vercel y definir como destino al root del proyecto. De tal manera el ruteo se
+maneja desde la  UI y no por vercel. 
+
+*Disclaimer: desafortunadamente, la configuracion en vercel.json con respecto a las rutas afecta cuando usamos en modo development (localhost) por lo que debemos renombrar vercel.json a `_vercel.json`*
+
+Para mas info click aqui [project-configuration/rewrites](https://vercel.com/docs/project-configuration#project-configuration/rewrites)
 
 ## Correr en modo:development
 
