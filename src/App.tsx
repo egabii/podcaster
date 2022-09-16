@@ -1,10 +1,10 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { Grid, GridItem } from '@chakra-ui/react'
-import Home from './pages/Home'
-import Podcast from './pages/Podcast'
-import Episode from './pages/Episode'
-import Header from './components/Header'
-import Footer from './components/Footer'
+import Home from 'pages/Home'
+import Podcast from 'pages/Podcast'
+import Episode from 'pages/Episode'
+import Header from 'components/Header'
+import Footer from 'components/Footer'
 
 function App() {
   const gridProps = {

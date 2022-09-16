@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
 import { Badge, Box, Flex, Input, SimpleGrid } from '@chakra-ui/react'
-import { IPodcastList } from '../providers/podcasts/podcasts.type'
-import PodcastCard from '../components/PodcastCard'
-import usePodcasts from '../hooks/usePodcasts';
+import { IPodcastList } from 'providers/podcasts/podcasts.type'
+import PodcastCard from 'components/PodcastCard'
+import usePodcasts from 'hooks/usePodcasts';
 
 export default function Home() {
   const { isLoading, data:podcastList } = usePodcasts();

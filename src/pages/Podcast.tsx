@@ -4,11 +4,11 @@ import parser from 'html-react-parser';
 import { Box, Image, Stack, Text, StackDivider } from '@chakra-ui/react'
 import { useParams, Link } from 'react-router-dom'
 import { createColumnHelper } from "@tanstack/react-table";
-import { DataTable } from "../components/DataTable";
-import { IPodcastItem } from '../providers/podcasts/podcasts.type'
-import { IEpisode } from '../providers/episodes/episodes.type'
-import useEpisodes from '../hooks/useEpisodes'
-import usePodcasts from '../hooks/usePodcasts'
+import { DataTable } from "components/DataTable";
+import { IPodcastItem } from 'providers/podcasts/podcasts.type'
+import { IEpisode } from 'providers/episodes/episodes.type'
+import useEpisodes from 'hooks/useEpisodes'
+import usePodcasts from 'hooks/usePodcasts'
 
 export default function Podcast() {
   let { podcastId } = useParams();
