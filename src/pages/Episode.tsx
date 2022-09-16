@@ -8,7 +8,7 @@ import useEpisodes from 'hooks/useEpisodes';
 import usePodcasts from 'hooks/usePodcasts';
 
 export default function Episode(): JSX.Element {
-	const { podcastId = '0', episodeId } = useParams();
+	const { podcastId = '0', episodeId = '0' } = useParams();
 	const { isLoading: isLoadingPodcasts, data: podcastList } = usePodcasts();
 	const { isLoading: isLoadingEpisodes, data: episodesList } =
 		useEpisodes(podcastId);
@@ -20,7 +20,7 @@ export default function Episode(): JSX.Element {
 	useEffect(() => {
 		if (episodesList?.length > 0) {
 			setSelectedEpisode(
-				episodesList?.find(episode => episode.guid === episodeId) ?? null
+				episodesList?.find(episode => episode.id === +episodeId) ?? null
 			);
 		}
 		if (podcastList?.length > 0) {

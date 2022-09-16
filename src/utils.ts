@@ -51,7 +51,7 @@ export const destructringEpisodeResponse = (
 	// I took this approach to slice the first 50 episodes only
 	return feedXMLData.rss.channel.item
 		.slice(0, 50)
-		.map((episode: IEpisodeItemXML) => {
+		.map((episode: IEpisodeItemXML, index: number) => {
 			return {
 				guid: episode.guid['#text'],
 				title: episode.title,
@@ -65,6 +65,7 @@ export const destructringEpisodeResponse = (
 				episodeNumber: episode['itunes:episode'] ?? 0,
 				season: episode['itunes:season'] ?? 0,
 				publishDate: episode?.pubDate,
+				id: index + 1,
 			};
 		});
 };

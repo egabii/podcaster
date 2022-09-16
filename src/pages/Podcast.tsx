@@ -24,7 +24,7 @@ export default function Podcast(): JSX.Element {
 		columnHelper.accessor('title', {
 			cell: info => (
 				<Link
-					to={`/podcast/${podcastId}/episode/${info.row.original.guid}`}
+					to={`/podcast/${podcastId}/episode/${info.row.original.id}`}
 					state={{ podcast: selectedPodcast, episode: info.row.original }}>
 					<Text color='blue.400' _hover={{ color: 'blue.200' }}>
 						{parser(info.getValue())}
