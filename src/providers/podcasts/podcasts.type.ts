@@ -1,15 +1,14 @@
 interface IImage {
-  url: string,
-  height: number
- }
+	url: string;
+	height: number;
+}
 
 export interface IPodcastItem {
-  name: string,
-  author: string,
-  images: IImage[],
-  description: string,
-  id: number
-};
+	name: string;
+	author: string;
+	images: IImage[];
+	description: string;
+	id: number;
+}
 
-
-export type IPodcastList =  Array<IPodcastItem>;
+export type IPodcastList = IPodcastItem[];

@@ -1,26 +1,35 @@
-import { useQuery } from "react-query"
-import useQueryStorage from './useQueryStorage'
-import fetchPodcasts from "../providers/podcasts/fetchPodcast"
-import endpoints from "../providers/endpoints"
-import { IPodcastList } from "../providers/podcasts/podcasts.type"
-import { useEffect } from "react"
+import { useQuery } from 'react-query';
+import useQueryStorage from './useQueryStorage';
+import fetchPodcasts from 'providers/podcasts/fetchPodcast';
+import { IPodcastList } from 'providers/podcasts/podcasts.type';
+import { useEffect } from 'react';
 
-export default function usePodcasts() {
-  const {storageData, setPreference} = useQueryStorage(endpoints.podcasts());
+const QUERY_KEY = 'podcasts';
+interface IPodcastsQuery {
+	isLoading: boolean;
+	data: IPodcastList;
+}
 
-  const { isLoading, data:podcastList, ...rest } = useQuery<IPodcastList, Error>('podcasts', fetchPodcasts, {
-    enabled: storageData.contents.length === 0
-  });
+export default function usePodcasts(): IPodcastsQuery {
+	const { storageData, setPreference } = useQueryStorage(QUERY_KEY);
 
-  useEffect(() => {
-    if (isLoading === false && !!podcastList) {
-      setPreference(podcastList);
-    }
-  }, [isLoading, podcastList]);
+	const {
+		data: podcastList,
+		isLoading,
+		...rest
+	} = useQuery<IPodcastList, Error>(QUERY_KEY, fetchPodcasts, {
+		enabled: storageData.contents.length === 0,
+	});
 
-  return {
-    ...rest,
-    isLoading,
-    data: storageData.contents as IPodcastList
-  };
+	useEffect(() => {
+		if (!isLoading && !(podcastList == null)) {
+			setPreference(podcastList);
+		}
+	}, [isLoading, podcastList]);
+
+	return {
+		...rest,
+		isLoading,
+		data: storageData.contents as IPodcastList,
+	};
 }
