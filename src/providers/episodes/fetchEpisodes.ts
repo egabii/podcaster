@@ -1,7 +1,7 @@
 import axios from 'axios';
 import endpoints from '../endpoints';
 import { IEpisodesList } from './episodes.type';
-import { destructringEpisodeResponse } from '../../utils';
+import { destructringEpisodeResponse } from 'utils';
 
 export default async function fetchEpisodes(
 	podcastId: string
