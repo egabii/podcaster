@@ -91,9 +91,7 @@ export default function Episode(): JSX.Element {
 						<Text fontSize='2xl' fontWeight='semibold'>
 							{selectedEpisode.title}
 						</Text>
-						<Text fontWeight='regular' marginBottom='1rem'>
-							{parser(selectedEpisode.description)}
-						</Text>
+						<Box marginBottom='1rem'>{parser(selectedEpisode.description)}</Box>
 						<audio controls controlsList='nodownload' style={{ width: '100%' }}>
 							<source
 								src={selectedEpisode.enclosure.url}
