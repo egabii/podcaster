@@ -3,23 +3,21 @@ import { IPodcastList } from '../podcasts/podcasts.type';
 import { IEpisodesList } from '../episodes/episodes.type';
 import dayjs from 'dayjs';
 
+type IContents = IPodcastList | IEpisodesList;
+
 export function getItem (keyMapper: string): IClientCacheItem  {
   return JSON.parse(localStorage.getItem(keyMapper) ?? defaultEmptyItemStringify);
 }
 
-export function saveItem(keyMapper: string, contents: IPodcastList | IEpisodesList): IClientCacheItem {
+export function saveItem(keyMapper: string, contents: IContents): IClientCacheItem {
   try {
     const alreadyItem = JSON.parse(localStorage.getItem(keyMapper) ?? defaultEmptyItemStringify);
-    if (alreadyItem.contents.length === 0) {
-      const stringifyItem = JSON.stringify({
-        lastFetchDate: dayjs(),
-        contents
-      });
-      localStorage.setItem(keyMapper, stringifyItem);
-      return JSON.parse(stringifyItem); 
-    } else {
-      throw new Error('key is already in used');
-    }
+    const stringifyItem = JSON.stringify({
+      lastFetchDate: dayjs(),
+      contents
+    });
+    localStorage.setItem(keyMapper, stringifyItem);
+    return JSON.parse(stringifyItem); 
   }catch(error) {
     console.error(error);
   }

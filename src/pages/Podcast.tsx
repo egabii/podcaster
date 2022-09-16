@@ -1,5 +1,6 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react'
 import dayjs from 'dayjs'
+import parser from 'html-react-parser';
 import { Box, Image, Stack, Text, StackDivider } from '@chakra-ui/react'
 import { useParams, Link } from 'react-router-dom'
 import { createColumnHelper } from "@tanstack/react-table";
@@ -24,7 +25,7 @@ export default function Podcast() {
           state={{ podcast: selectedPodcast, episode: info.row.original }}
         >
           <Text color='blue.400' _hover={{ color: "blue.200" }}>
-            {info.getValue()}
+            {parser(info.getValue())}
           </Text>
         </Link>),
       header: 'Title'
@@ -40,7 +41,7 @@ export default function Podcast() {
   ];
 
   useEffect(() => {
-    if (podcastList) {
+    if (podcastList?.length > 0) {
       setSelectedPodcast(podcastList.find(podcast => podcast.id === +podcastId));
     }
   }, [podcastList]);

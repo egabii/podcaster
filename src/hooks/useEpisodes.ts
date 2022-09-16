@@ -6,7 +6,7 @@ import { IEpisodesList } from "../providers/episodes/episodes.type"
 import { useEffect } from "react"
 
 export default function useEpisodes(podcastId) {
-  const {storageData, setPreference} = useQueryStorage(endpoints.episodes(podcastId));
+  const {storageData, setPreference} = useQueryStorage(`podcast/${podcastId}/episodes`);
 
   const { isLoading, data: episodesList, ...rest } = useQuery<IEpisodesList, Error>(['episodes', podcastId], () => fetchEpisodes(podcastId), {
     enabled: storageData.contents.length === 0
