@@ -24,7 +24,7 @@ interface IEpisodeItemXML {
 	title: any;
 	description: any;
 	enclosure: { [x: string]: any };
-	pubDate: any;
+	pubDate: string;
 }
 
 export const destructringPodcastResponse = (podcasts: any): IPodcastList => {
@@ -46,10 +46,14 @@ export const destructringEpisodeResponse = (
 	xmlResponse: string
 ): IEpisodesList => {
 	const parser = new XMLParser({ ignoreAttributes: false });
-	const feedXMLData = parser.parse(xmlResponse);
+	const {
+		rss: {
+			channel: { item },
+		},
+	} = parser.parse(xmlResponse);
 	// due to some podcasts have a lot of episodes which makes harder to handle these
 	// I took this approach to slice the first 50 episodes only
-	return feedXMLData.rss.channel.item
+	return (item as IEpisodeItemXML[])
 		.slice(0, 50)
 		.map((episode: IEpisodeItemXML, index: number) => {
 			return {
@@ -67,5 +71,5 @@ export const destructringEpisodeResponse = (
 				publishDate: episode?.pubDate,
 				id: index + 1,
 			};
-		});
+		}) as IEpisodesList;
 };
