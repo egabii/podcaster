@@ -1,5 +1,6 @@
 import { SetStateAction, useEffect, useState } from 'react';
 import { Badge, Box, Flex, Input, SimpleGrid } from '@chakra-ui/react';
+import ContainerLayout from 'components/ContainerLayout';
 import { IPodcastList } from 'providers/podcasts/podcasts.type';
 import PodcastCard from 'components/PodcastCard';
 import usePodcasts from 'hooks/usePodcasts';
@@ -35,35 +36,37 @@ export default function Home(): JSX.Element {
 		setSearchItems(e.target.value);
 	};
 
-	if (isLoading) return <h1>Loading ...</h1>;
+	if (isLoading) return <h1>Loading</h1>;
 
 	return (
-		<>
-			<Box as='section' p='4'>
-				<Flex justify='flex-end' align='center'>
-					<Badge
-						borderRadius='full'
-						px='2'
-						textAlign='center'
-						colorScheme='teal'
-						w='50px'
-						fontSize='1rem'>
-						{renderList.length}
-					</Badge>
-					<Input
-						placeholder='Filter podcasts'
-						size='sm'
-						w='300px'
-						onChange={onChangeSearch}
-						margin='2'
-					/>
-				</Flex>
-			</Box>
-			<SimpleGrid columns={{ sm: 2, md: 4 }} spacing={1}>
-				{renderList.map(podcast => (
-					<PodcastCard key={podcast.id} {...podcast} />
-				))}
-			</SimpleGrid>
-		</>
+		<ContainerLayout>
+			<>
+				<Box as='section' p='4'>
+					<Flex justify='flex-end' align='center'>
+						<Badge
+							borderRadius='full'
+							px='2'
+							textAlign='center'
+							colorScheme='teal'
+							w='50px'
+							fontSize='1rem'>
+							{renderList.length}
+						</Badge>
+						<Input
+							placeholder='Filter podcasts'
+							size='sm'
+							w='300px'
+							onChange={onChangeSearch}
+							margin='2'
+						/>
+					</Flex>
+				</Box>
+				<SimpleGrid columns={{ sm: 2, md: 4 }} spacing={1}>
+					{renderList.map(podcast => (
+						<PodcastCard key={podcast.id} {...podcast} />
+					))}
+				</SimpleGrid>
+			</>
+		</ContainerLayout>
 	);
 }

@@ -4,6 +4,7 @@ import parser from 'html-react-parser';
 import { Box, Image, Stack, Text, StackDivider } from '@chakra-ui/react';
 import { useParams, Link } from 'react-router-dom';
 import { createColumnHelper } from '@tanstack/react-table';
+import ContainerLayout from 'components/ContainerLayout';
 import { DataTable } from 'components/DataTable';
 import { IPodcastItem } from 'providers/podcasts/podcasts.type';
 import { IEpisode } from 'providers/episodes/episodes.type';
@@ -52,80 +53,82 @@ export default function Podcast(): JSX.Element {
 	}, [podcastList]);
 
 	return (
-		<Stack
-			direction={{ base: 'column', md: 'row' }}
-			spacing={8}
-			marginTop='1rem'>
-			<Box
-				as='aside'
-				w={{ sm: '100%', md: '30%' }}
-				border='1px'
-				borderRadius='base'
-				borderColor='gray.200'
-				p={{ sm: '1.25rem', md: '2rem' }}
-				bg={isLoadingPodcasts ? 'gray.100' : 'white'}>
-				{selectedPodcast !== null && (
-					<Stack
-						textAlign={{ md: 'left' }}
-						mt={{ base: 4, md: 0 }}
-						ml={{ md: 6 }}
-						divider={<StackDivider borderColor='gray.200' />}>
-						<Box>
-							<Image
-								src={selectedPodcast.images[2].url}
-								alt={`${selectedPodcast.name} - ${selectedPodcast.author}`}
-								margin='auto'
-								objectFit='cover'
-								borderRadius='base'
-							/>
-						</Box>
-						<Box>
-							<Text as='h4'>{selectedPodcast.name}</Text>
-							<Text fontWeight='semibold'>
-								Author: {selectedPodcast.author}
-							</Text>
-						</Box>
-						<Box>
-							<Text as='h6' fontWeight='semibold'>
-								Description
-							</Text>
-							<Text fontWeight='normal' as='i'>
-								{selectedPodcast.description}
-							</Text>
-						</Box>
-					</Stack>
-				)}
-			</Box>
-			<Box
-				as='section'
-				w={{ sm: '100%', md: '70%' }}
-				borderColor='gray.200'
-				borderRadius='base'>
+		<ContainerLayout>
+			<Stack
+				direction={{ base: 'column', md: 'row' }}
+				spacing={8}
+				marginTop='1rem'>
 				<Box
+					as='aside'
+					w={{ sm: '100%', md: '30%' }}
 					border='1px'
-					borderColor='gray.200'
 					borderRadius='base'
-					marginBottom='1rem'
-					p='1rem'
-					bg={isLoadingEpisodes ? 'gray.200' : 'white'}>
-					{episodesList?.length > 0 && (
-						<Text fontSize='3xl' fontWeight='semibold'>
-							Episodes: {episodesList.length}
-						</Text>
+					borderColor='gray.200'
+					p={{ sm: '1.25rem', md: '2rem' }}
+					bg={isLoadingPodcasts ? 'gray.100' : 'white'}>
+					{selectedPodcast !== null && (
+						<Stack
+							textAlign={{ md: 'left' }}
+							mt={{ base: 4, md: 0 }}
+							ml={{ md: 6 }}
+							divider={<StackDivider borderColor='gray.200' />}>
+							<Box>
+								<Image
+									src={selectedPodcast.images[2].url}
+									alt={`${selectedPodcast.name} - ${selectedPodcast.author}`}
+									margin='auto'
+									objectFit='cover'
+									borderRadius='base'
+								/>
+							</Box>
+							<Box>
+								<Text as='h4'>{selectedPodcast.name}</Text>
+								<Text fontWeight='semibold'>
+									Author: {selectedPodcast.author}
+								</Text>
+							</Box>
+							<Box>
+								<Text as='h6' fontWeight='semibold'>
+									Description
+								</Text>
+								<Text fontWeight='normal' as='i'>
+									{selectedPodcast.description}
+								</Text>
+							</Box>
+						</Stack>
 					)}
 				</Box>
+				<Box
+					as='section'
+					w={{ sm: '100%', md: '70%' }}
+					borderColor='gray.200'
+					borderRadius='base'>
+					<Box
+						border='1px'
+						borderColor='gray.200'
+						borderRadius='base'
+						marginBottom='1rem'
+						p='1rem'
+						bg={isLoadingEpisodes ? 'gray.200' : 'white'}>
+						{episodesList?.length > 0 && (
+							<Text fontSize='3xl' fontWeight='semibold'>
+								Episodes: {episodesList.length}
+							</Text>
+						)}
+					</Box>
 
-				<Box
-					border='1px'
-					borderColor='gray.200'
-					borderRadius='base'
-					p='1rem'
-					bg={isLoadingEpisodes ? 'gray.200' : 'white'}>
-					{episodesList?.length > 0 && (
-						<DataTable columns={columns} data={episodesList} />
-					)}
+					<Box
+						border='1px'
+						borderColor='gray.200'
+						borderRadius='base'
+						p='1rem'
+						bg={isLoadingEpisodes ? 'gray.200' : 'white'}>
+						{episodesList?.length > 0 && (
+							<DataTable columns={columns} data={episodesList} />
+						)}
+					</Box>
 				</Box>
-			</Box>
-		</Stack>
+			</Stack>
+		</ContainerLayout>
 	);
 }
