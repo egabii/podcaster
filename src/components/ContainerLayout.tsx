@@ -4,10 +4,12 @@ import Footer from 'components/Footer';
 
 interface ContainerLayoutProps {
 	children: JSX.Element;
+	spinnerHeader?: boolean;
 }
 
 export default function ContainerLayout({
 	children,
+	spinnerHeader = false,
 }: ContainerLayoutProps): JSX.Element {
 	const gridProps = {
 		templateAreas: `
@@ -24,7 +26,7 @@ export default function ContainerLayout({
 	return (
 		<Grid {...gridProps}>
 			<GridItem area={'header'} as='header' borderBottom={'1px solid #eee'}>
-				<Header />
+				<Header loading={spinnerHeader} />
 			</GridItem>
 			<GridItem pl='2' pr='2' area={'main'} as='main'>
 				{children}

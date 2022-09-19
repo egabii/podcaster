@@ -8,13 +8,12 @@ import PodcastCard from 'components/PodcastCard';
 const props: IPodcastItem = podcastUIMockData[0];
 
 describe('PodcastCard component', () => {
-
-  test('render component', () => {
-    render(
-      <AllTheProviders>
-        <PodcastCard {...props} />
-      </AllTheProviders>
-    );
+	test('render component', () => {
+		render(
+			<AllTheProviders>
+				<PodcastCard {...props} />
+			</AllTheProviders>
+		);
 
 		expect(
 			screen.getByRole('img', {
@@ -29,6 +28,5 @@ describe('PodcastCard component', () => {
 		).toBeInTheDocument();
 
 		expect(screen.getByText(/author: mailchimp/i)).toBeInTheDocument();
-
-  })
-})
+	});
+});
