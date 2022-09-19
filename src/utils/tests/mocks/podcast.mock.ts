@@ -421,7 +421,7 @@ export const axiosResponseDataMock = {
 	],
 };
 
-export const transformedDataMock = [
+export const podcastUIMockData = [
 	{
 		name: 'Björk: Sonic Symbolism',
 		images: [

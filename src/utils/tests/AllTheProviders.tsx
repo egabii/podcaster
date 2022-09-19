@@ -1,32 +1,32 @@
 import React, { FC, ReactElement } from 'react';
 import { ChakraProvider } from '@chakra-ui/react';
-import { QueryClientProvider, QueryClient, setLogger } from 'react-query';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, MemoryRouter,  Route, Routes} from 'react-router-dom';
 
-// test setup for react-query
-const queryClient = new QueryClient({
-	defaultOptions: {
-		queries: {
-			retry: false,
-			cacheTime: Infinity,
-		},
-	},
-});
+interface AllTheProvidersProps { 
+	children: React.ReactNode; 
+	withMemoryRouter?: boolean | undefined;
+	route?: string | undefined,
+	path?: string | undefined
+}
 
-setLogger({
-	log: console.log,
-	warn: console.warn,
-	error: () => {},
-});
-
-export const AllTheProviders: FC<{ children: React.ReactNode }> = ({
+export const AllTheProviders: FC<AllTheProvidersProps> = ({
 	children,
+	withMemoryRouter = false,
+	route = '/',
+	path='/'
 }): ReactElement => {
 	return (
-		<QueryClientProvider client={queryClient}>
-			<ChakraProvider>
-				<BrowserRouter>{children}</BrowserRouter>
-			</ChakraProvider>
-		</QueryClientProvider>
+		<ChakraProvider>
+			{ withMemoryRouter 
+				? (
+				<MemoryRouter initialEntries={[route]}>	
+					<Routes>
+						<Route path={path} element={children} />
+					</Routes>
+				</MemoryRouter>
+				)
+			: <BrowserRouter>{children}</BrowserRouter>
+			}
+		</ChakraProvider>
 	);
 };
