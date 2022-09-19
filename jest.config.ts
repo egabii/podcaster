@@ -7,6 +7,5 @@ export default {
 	moduleNameMapper: {
 		'^/(.*)$': '<rootDir>/src/$1',
 	},
-	setupFilesAfterEnv: ['./jest.setup.ts'],
 	modulePathIgnorePatterns: ['<rootDir>/build/', '<rootDir>/dist/'],
 };
