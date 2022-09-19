@@ -2,11 +2,11 @@ import { useQuery } from 'react-query';
 import useQueryStorage from './useQueryStorage';
 import fetchPodcasts from 'providers/podcasts/fetchPodcast';
 import { IPodcastList } from 'providers/podcasts/podcasts.type';
+import { IQueryHookBooleans } from './queries.hook.type';
 import { useEffect } from 'react';
 
 const QUERY_KEY = 'podcasts';
-interface IPodcastsQuery {
-	isLoading: boolean;
+interface IPodcastsQuery extends IQueryHookBooleans {
 	data: IPodcastList;
 }
 
@@ -16,6 +16,9 @@ export default function usePodcasts(): IPodcastsQuery {
 	const {
 		data: podcastList,
 		isLoading,
+		isFetching,
+		isSuccess,
+		isError,
 		...rest
 	} = useQuery<IPodcastList, Error>(QUERY_KEY, fetchPodcasts, {
 		enabled: storageData.contents.length === 0,
@@ -30,6 +33,9 @@ export default function usePodcasts(): IPodcastsQuery {
 	return {
 		...rest,
 		isLoading,
+		isFetching,
+		isSuccess,
+		isError,
 		data: storageData.contents as IPodcastList,
 	};
 }

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Box, Image, Stack, Text, StackDivider } from '@chakra-ui/react';
 import { useParams, Link } from 'react-router-dom';
 import parser from 'html-react-parser';
+import ContainerLayout from 'components/ContainerLayout';
 import { IPodcastItem } from 'providers/podcasts/podcasts.type';
 import { IEpisode } from 'providers/episodes/episodes.type';
 import useEpisodes from 'hooks/useEpisodes';
@@ -31,77 +32,97 @@ export default function Episode(): JSX.Element {
 	}, [episodesList, podcastList]);
 
 	return (
-		<Stack
-			direction={{ base: 'column', md: 'row' }}
-			spacing={8}
-			marginTop='1rem'>
-			<Box
-				as='aside'
-				w={{ sm: '100%', md: '30%' }}
-				border='1px'
-				borderRadius='base'
-				borderColor='gray.200'
-				p={{ sm: '1.25rem', md: '2rem' }}
-				bg={isLoadingPodcasts ? 'gray.100' : 'white'}>
-				{selectedPodcast != null && (
-					<Link to={`/podcast/${podcastId}`}>
-						<Stack
-							align={{ md: 'center' }}
-							textAlign={{ md: 'left' }}
-							mt={{ base: 4, md: 0 }}
-							ml={{ md: 6 }}
-							divider={<StackDivider borderColor='gray.200' />}>
-							<Box>
-								<Image
-									src={selectedPodcast.images[2].url}
-									alt={`${selectedPodcast.name} - ${selectedPodcast.author}`}
-									margin='auto'
-									objectFit='cover'
-									borderRadius='base'
+		<ContainerLayout spinnerHeader={isLoadingPodcasts || isLoadingEpisodes}>
+			<Stack
+				direction={{ base: 'column', md: 'row' }}
+				spacing={8}
+				marginTop='1rem'>
+				<Box
+					as='aside'
+					w={{ sm: '100%', md: '30%' }}
+					border='1px'
+					borderRadius='base'
+					borderColor='gray.200'
+					p={{ sm: '1.25rem', md: '2rem' }}>
+					{isLoadingPodcasts && (
+						<Box
+							bg='gray.200'
+							height='400px'
+							data-testid='loaded-podcast-profile'
+						/>
+					)}
+					{selectedPodcast !== null && (
+						<Link to={`/podcast/${podcastId}`}>
+							<Stack
+								align={{ md: 'center' }}
+								textAlign={{ md: 'left' }}
+								mt={{ base: 4, md: 0 }}
+								ml={{ md: 6 }}
+								divider={<StackDivider borderColor='gray.200' />}>
+								<Box>
+									<Image
+										src={selectedPodcast.images[2].url}
+										alt={`${selectedPodcast.name} - ${selectedPodcast.author}`}
+										margin='auto'
+										objectFit='cover'
+										borderRadius='base'
+									/>
+								</Box>
+								<Box>
+									<Text as='h4'>{selectedPodcast.name}</Text>
+									<Text fontWeight='semibold'>
+										Author: {selectedPodcast.author}
+									</Text>
+								</Box>
+								<Box>
+									<Text as='h6' fontWeight='semibold'>
+										Description
+									</Text>
+									<Text fontWeight='normal' as='i'>
+										{selectedPodcast.description}
+									</Text>
+								</Box>
+							</Stack>
+						</Link>
+					)}
+				</Box>
+				<Box
+					as='section'
+					w={{ sm: '100%', md: '70%' }}
+					border='1px'
+					borderColor='gray.200'
+					borderRadius='base'
+					p={{ base: '1.25rem', md: '2rem' }}>
+					{isLoadingEpisodes && (
+						<Box
+							bg='gray.200'
+							height='400px'
+							data-testid='loaded-episode-description'
+						/>
+					)}
+					{selectedEpisode !== null && (
+						<>
+							<Text fontSize='2xl' fontWeight='semibold'>
+								{selectedEpisode.title}
+							</Text>
+							<Box marginBottom='1rem'>
+								{parser(selectedEpisode.description)}
+							</Box>
+							<audio
+								controls
+								controlsList='nodownload'
+								style={{ width: '100%' }}
+								data-testid='audio-controls'>
+								<source
+									src={selectedEpisode.enclosure.url}
+									type={selectedEpisode.enclosure.type}
 								/>
-							</Box>
-							<Box>
-								<Text as='h4'>{selectedPodcast.name}</Text>
-								<Text fontWeight='semibold'>
-									Author: {selectedPodcast.author}
-								</Text>
-							</Box>
-							<Box>
-								<Text as='h6' fontWeight='semibold'>
-									Description
-								</Text>
-								<Text fontWeight='normal' as='i'>
-									{selectedPodcast.description}
-								</Text>
-							</Box>
-						</Stack>
-					</Link>
-				)}
-			</Box>
-			<Box
-				as='section'
-				w={{ sm: '100%', md: '70%' }}
-				border='1px'
-				borderColor='gray.200'
-				borderRadius='base'
-				p={{ base: '1.25rem', md: '2rem' }}
-				bg={isLoadingEpisodes ? 'gray.100' : 'white'}>
-				{selectedEpisode != null && (
-					<>
-						<Text fontSize='2xl' fontWeight='semibold'>
-							{selectedEpisode.title}
-						</Text>
-						<Box marginBottom='1rem'>{parser(selectedEpisode.description)}</Box>
-						<audio controls controlsList='nodownload' style={{ width: '100%' }}>
-							<source
-								src={selectedEpisode.enclosure.url}
-								type={selectedEpisode.enclosure.type}
-							/>
-							Your browser does not support the audio element.
-						</audio>
-					</>
-				)}
-			</Box>
-		</Stack>
+								Your browser does not support the audio element.
+							</audio>
+						</>
+					)}
+				</Box>
+			</Stack>
+		</ContainerLayout>
 	);
 }

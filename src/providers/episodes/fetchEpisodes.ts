@@ -1,7 +1,7 @@
 import axios from 'axios';
 import endpoints from '../endpoints';
 import { IEpisodesList } from './episodes.type';
-import { destructringEpisodeResponse } from 'utils';
+import { transformEpisodeResponse } from 'utils/providers.utils';
 
 export default async function fetchEpisodes(
 	podcastId: string
@@ -15,7 +15,7 @@ export default async function fetchEpisodes(
 					endpoints.allOrigins(res.data.results[0].feedUrl)
 				);
 			});
-		episodesList = destructringEpisodeResponse(response.data);
+		episodesList = transformEpisodeResponse(response.data);
 	} catch (error) {
 		console.error(error);
 	}

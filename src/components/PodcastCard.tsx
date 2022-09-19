@@ -11,7 +11,8 @@ export default function PodcastCard(props: IPodcastItem): JSX.Element {
 			margin={2}
 			borderWidth='1px'
 			borderRadius='lg'
-			overflow='hidden'>
+			overflow='hidden'
+			data-testid='test-card'>
 			<Link
 				to={`/podcast/${props.id}`}
 				state={{ podcast: { ...props } }}

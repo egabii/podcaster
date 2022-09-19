@@ -32,7 +32,7 @@ interface IEpisodeItemXML {
 	pubDate: string;
 }
 
-export const destructringPodcastResponse = (
+export const transformPodcastResponse = (
 	podcastResponse: IPodcastFeedResponse
 ): IPodcastList => {
 	return podcastResponse?.feed?.entry.map((item: IPodcastEntryResponse) => ({
@@ -51,7 +51,7 @@ export const destructringPodcastResponse = (
 	}));
 };
 
-export const destructringEpisodeResponse = (
+export const transformEpisodeResponse = (
 	xmlResponse: string
 ): IEpisodesList => {
 	const parser = new XMLParser({ ignoreAttributes: false });

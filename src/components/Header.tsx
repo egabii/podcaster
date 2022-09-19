@@ -1,9 +1,11 @@
 import { Link } from 'react-router-dom';
-import { useIsFetching } from 'react-query';
 import { Box, CircularProgress, Flex, Text } from '@chakra-ui/react';
 
-export default function Header(): JSX.Element {
-	const isFetching = useIsFetching();
+interface HeaderProps {
+	loading?: boolean;
+}
+
+export default function Header({ loading = false }: HeaderProps): JSX.Element {
 	return (
 		<Flex
 			align='center'
@@ -20,8 +22,13 @@ export default function Header(): JSX.Element {
 				</Link>
 			</Box>
 			<Box>
-				{isFetching > 0 ? (
-					<CircularProgress isIndeterminate color='green.300' size='35px' />
+				{loading ? (
+					<CircularProgress
+						isIndeterminate
+						color='green.300'
+						size='35px'
+						data-testid='global-loading'
+					/>
 				) : null}
 			</Box>
 		</Flex>
