@@ -1,5 +1,5 @@
 import axios from 'axios';
-import endpoints from '../endpoints';
+import endpoints from '../../endpoints';
 import { IEpisodesList } from './episodes.type';
 import { transformEpisodeResponse } from 'utils/providers.utils';
 

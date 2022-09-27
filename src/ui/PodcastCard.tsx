@@ -1,6 +1,6 @@
 import { Box, Image, Stack, Text, Tooltip } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
-import { IPodcastItem } from 'providers/podcasts/podcasts.type';
+import { IPodcastItem } from 'features/podcasts/podcasts.type';
 
 export default function PodcastCard(props: IPodcastItem): JSX.Element {
 	return (

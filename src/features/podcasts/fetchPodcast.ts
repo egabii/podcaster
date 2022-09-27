@@ -1,5 +1,5 @@
 import axios from 'axios';
-import endpoints from '../endpoints';
+import endpoints from '../../endpoints';
 import { transformPodcastResponse } from 'utils/providers.utils';
 import { IPodcastList } from './podcasts.type';
 

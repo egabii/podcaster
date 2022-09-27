@@ -2,11 +2,11 @@ import { useEffect, useState } from 'react';
 import { Box, Image, Stack, Text, StackDivider } from '@chakra-ui/react';
 import { useParams, Link } from 'react-router-dom';
 import parser from 'html-react-parser';
-import ContainerLayout from 'components/ContainerLayout';
-import { IPodcastItem } from 'providers/podcasts/podcasts.type';
-import { IEpisode } from 'providers/episodes/episodes.type';
-import useEpisodes from 'hooks/useEpisodes';
-import usePodcasts from 'hooks/usePodcasts';
+import ContainerLayout from 'ui/ContainerLayout';
+import { IPodcastItem } from 'features/podcasts/podcasts.type';
+import { IEpisode } from 'features/episodes/episodes.type';
+import useEpisodes from 'features/episodes/useEpisodes';
+import usePodcasts from 'features/podcasts/usePodcasts';
 
 export default function Episode(): JSX.Element {
 	const { podcastId = '0', episodeId = '0' } = useParams();
@@ -103,7 +103,7 @@ export default function Episode(): JSX.Element {
 					{selectedEpisode !== null && (
 						<>
 							<Text fontSize='2xl' fontWeight='semibold'>
-								{selectedEpisode.title}
+								{parser(selectedEpisode?.title)}
 							</Text>
 							<Box marginBottom='1rem'>
 								{parser(selectedEpisode.description)}

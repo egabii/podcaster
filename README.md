@@ -14,8 +14,7 @@ La applicacion web es una SPA (o Single Page Application), la cual esta siendo d
 - [Reactjs 18](https://reactjs.org/), biblioteca principal para la interfaz de usuario
 - [React-query v3](https://react-query-v3.tanstack.com/) para manejar las peticiones de los servicios
 - [React router v6](https://reactrouter.com/en/main) para el manejo de las rutas en la UI
-- [Chakra UI](https://chakra-ui.com/) biblioteca de componentes 
-
+- [Chakra UI](https://chakra-ui.com/) biblioteca de componentes
 
 ## Correr en modo:development
 
@@ -31,10 +30,10 @@ Para correr los test
 
 `npm run test` o `npm test`
 
-Para correr prettier 
+Para correr prettier
 
 `npm run format`
 
-Para correr eslint 
+Para correr eslint
 
 `npm run lint`

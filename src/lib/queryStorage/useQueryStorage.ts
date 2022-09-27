@@ -1,10 +1,10 @@
 import { useCallback } from 'react';
 import { useQuery, useQueryClient } from 'react-query';
 import dayjs from 'dayjs';
-import { getItem, saveItem } from 'providers/cache/client';
-import { IClientCacheItem } from 'providers/cache/client.cache.types';
-import { IPodcastList } from 'providers/podcasts/podcasts.type';
-import { IEpisodesList } from 'providers/episodes/episodes.type';
+import { getItem, saveItem } from 'lib/queryStorage/client';
+import { IClientCacheItem } from 'lib/queryStorage/client.cache.types';
+import { IPodcastList } from 'features/podcasts/podcasts.type';
+import { IEpisodesList } from 'features/episodes/episodes.type';
 
 type IPreference = IPodcastList | IEpisodesList;
 interface IUseQueryStorage {

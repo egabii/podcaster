@@ -1,5 +1,5 @@
-import { IPodcastList } from 'providers/podcasts/podcasts.type';
-import { IEpisodesList } from 'providers/episodes/episodes.type';
+import { IPodcastList } from 'features/podcasts/podcasts.type';
+import { IEpisodesList } from 'features/episodes/episodes.type';
 import { XMLParser } from 'fast-xml-parser';
 
 interface IPodcastImageResponse {

@@ -2,8 +2,8 @@ import {
 	IClientCacheItem,
 	defaultEmptyItemStringify,
 } from './client.cache.types';
-import { IPodcastList } from '../podcasts/podcasts.type';
-import { IEpisodesList } from '../episodes/episodes.type';
+import { IPodcastList } from '../../features/podcasts/podcasts.type';
+import { IEpisodesList } from '../../features/episodes/episodes.type';
 import dayjs from 'dayjs';
 
 type IContents = IPodcastList | IEpisodesList;

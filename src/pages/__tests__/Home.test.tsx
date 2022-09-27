@@ -1,11 +1,11 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import Home from 'pages/Home';
-import usePodcasts from 'hooks/usePodcasts';
-import { AllTheProviders } from 'utils/tests/AllTheProviders';
-import { podcastUIMockData } from 'utils/tests/mocks/podcast.mock';
+import usePodcasts from 'features/podcasts/usePodcasts';
+import { AllTheProviders } from 'utils/tests-utils/AllTheProviders';
+import { podcastUIMockData } from 'utils/tests-utils/mocks/podcast.mock';
 
-jest.mock('hooks/usePodcasts');
+jest.mock('features/podcasts/usePodcasts');
 
 const mockUsePodcasts = usePodcasts as jest.MockedFunction<typeof usePodcasts>;
 const queryEntity = {
