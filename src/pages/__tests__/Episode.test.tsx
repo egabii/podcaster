@@ -3,9 +3,9 @@ import '@testing-library/jest-dom';
 import Episode from 'pages/Episode';
 import usePodcasts from 'features/podcasts/usePodcasts';
 import useEpisodes from 'features/episodes/useEpisodes';
-import { AllTheProviders } from 'utils/tests-utils/AllTheProviders';
-import { podcastUIMockData } from 'utils/tests-utils/mocks/podcast.mock';
-import { episodesUIMockData } from 'utils/tests-utils/mocks/episodes.mock';
+import { AllTheProviders } from 'tests-utils/AllTheProviders';
+import { podcastUIMockData } from 'tests-utils/mocks/podcast.mock';
+import { episodesUIMockData } from 'tests-utils/mocks/episodes.mock';
 import { IEpisodesList } from 'features/episodes/episodes.type';
 
 jest.mock('features/podcasts/usePodcasts');

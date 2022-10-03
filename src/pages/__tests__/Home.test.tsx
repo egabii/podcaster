@@ -2,8 +2,8 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import Home from 'pages/Home';
 import usePodcasts from 'features/podcasts/usePodcasts';
-import { AllTheProviders } from 'utils/tests-utils/AllTheProviders';
-import { podcastUIMockData } from 'utils/tests-utils/mocks/podcast.mock';
+import { AllTheProviders } from 'tests-utils/AllTheProviders';
+import { podcastUIMockData } from 'tests-utils/mocks/podcast.mock';
 
 jest.mock('features/podcasts/usePodcasts');
 

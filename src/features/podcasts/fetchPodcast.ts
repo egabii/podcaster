@@ -1,6 +1,6 @@
 import axios from 'axios';
 import endpoints from '../../endpoints';
-import { transformPodcastResponse } from 'utils/providers.utils';
+import { transformPodcastResponse } from 'features/podcasts/transformPodcastResponse';
 import { IPodcastList } from './podcasts.type';
 
 export default async function fetchPodcasts(): Promise<IPodcastList> {
