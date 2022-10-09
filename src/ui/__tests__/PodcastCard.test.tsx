@@ -1,9 +1,9 @@
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import { IPodcastItem } from 'providers/podcasts/podcasts.type';
-import { podcastUIMockData } from 'utils/tests/mocks/podcast.mock';
-import { AllTheProviders } from 'utils/tests/AllTheProviders';
-import PodcastCard from 'components/PodcastCard';
+import { IPodcastItem } from 'features/podcasts/podcasts.type';
+import { podcastUIMockData } from 'tests-utils/mocks/podcast.mock';
+import { AllTheProviders } from 'tests-utils/AllTheProviders';
+import PodcastCard from 'ui/PodcastCard';
 
 const props: IPodcastItem = podcastUIMockData[0];
 

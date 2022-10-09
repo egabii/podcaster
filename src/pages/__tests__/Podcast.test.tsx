@@ -1,15 +1,15 @@
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import Podcast from 'pages/Podcast';
-import usePodcasts from 'hooks/usePodcasts';
-import useEpisodes from 'hooks/useEpisodes';
-import { AllTheProviders } from 'utils/tests/AllTheProviders';
-import { podcastUIMockData } from 'utils/tests/mocks/podcast.mock';
-import { episodesUIMockData } from 'utils/tests/mocks/episodes.mock';
-import { IEpisodesList } from 'providers/episodes/episodes.type';
+import usePodcasts from 'features/podcasts/usePodcasts';
+import useEpisodes from 'features/episodes/useEpisodes';
+import { AllTheProviders } from 'tests-utils/AllTheProviders';
+import { podcastUIMockData } from 'tests-utils/mocks/podcast.mock';
+import { episodesUIMockData } from 'tests-utils/mocks/episodes.mock';
+import { IEpisodesList } from 'features/episodes/episodes.type';
 
-jest.mock('hooks/usePodcasts');
-jest.mock('hooks/useEpisodes');
+jest.mock('features/podcasts/usePodcasts');
+jest.mock('features/episodes/useEpisodes');
 
 const mockUsePodcasts = usePodcasts as jest.MockedFunction<typeof usePodcasts>;
 const mockUseEpisodes = useEpisodes as jest.MockedFunction<typeof useEpisodes>;

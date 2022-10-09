@@ -4,9 +4,9 @@ import { BrowserRouter, MemoryRouter, Route, Routes } from 'react-router-dom';
 
 interface AllTheProvidersProps {
 	children: React.ReactNode;
-	withMemoryRouter?: boolean | undefined;
-	route?: string | undefined;
-	path?: string | undefined;
+	withMemoryRouter?: boolean;
+	route?: string;
+	path?: string;
 }
 
 export const AllTheProviders: FC<AllTheProvidersProps> = ({

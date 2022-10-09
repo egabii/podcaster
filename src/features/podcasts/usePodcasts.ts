@@ -1,8 +1,8 @@
 import { useQuery } from 'react-query';
-import useQueryStorage from './useQueryStorage';
-import fetchPodcasts from 'providers/podcasts/fetchPodcast';
-import { IPodcastList } from 'providers/podcasts/podcasts.type';
-import { IQueryHookBooleans } from './queries.hook.type';
+import useQueryStorage from '../../lib/queryStorage/useQueryStorage';
+import fetchPodcasts from 'features/podcasts/fetchPodcast';
+import { IPodcastList } from 'features/podcasts/podcasts.type';
+import { IQueryHookBooleans } from '../../lib/queryStorage/queries.hook.type';
 import { useEffect } from 'react';
 
 const QUERY_KEY = 'podcasts';

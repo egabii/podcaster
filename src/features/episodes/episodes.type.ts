@@ -17,4 +17,13 @@ export interface IEpisode {
 	publishDate: string;
 }
 
+export interface IEpisodeItemXML {
+	[x: string]: any;
+	guid: { [x: string]: any };
+	title: any;
+	description: any;
+	enclosure: { [x: string]: any };
+	pubDate: string;
+}
+
 export type IEpisodesList = IEpisode[];
