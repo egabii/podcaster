@@ -1,12 +1,5 @@
-import {
-	IClientCacheItem,
-	defaultEmptyItemStringify,
-} from './client.cache.types';
-import { IPodcastList } from '../../features/podcasts/podcasts.type';
-import { IEpisodesList } from '../../features/episodes/episodes.type';
+import { IClientCacheItem, defaultEmptyItemStringify } from './client.cache.types';
 import dayjs from 'dayjs';
-
-type IContents = IPodcastList | IEpisodesList;
 
 export function getItem(keyMapper: string): IClientCacheItem {
 	return JSON.parse(
@@ -14,7 +7,7 @@ export function getItem(keyMapper: string): IClientCacheItem {
 	);
 }
 
-export function saveItem(keyMapper: string, contents: IContents): void {
+export function saveItem<Type>(keyMapper: string, contents: Type[]): void {
 	try {
 		const stringifyItem = JSON.stringify({
 			lastFetchDate: dayjs(),

@@ -1,21 +1,8 @@
 import { useCallback } from 'react';
 import { useQuery, useQueryClient } from 'react-query';
 import dayjs from 'dayjs';
-import { getItem, saveItem } from 'lib/queryStorage/client';
-import { IClientCacheItem } from 'lib/queryStorage/client.cache.types';
-import { IPodcastList } from 'features/podcasts/podcasts.type';
-import { IEpisodesList } from 'features/episodes/episodes.type';
-
-type IPreference = IPodcastList | IEpisodesList;
-interface IUseQueryStorage {
-	storageData: IClientCacheItem;
-	setPreference: (newPref: IPreference) => void;
-}
-
-interface IQueryID {
-	id: string;
-}
-type IQueryKey = [string[], IQueryID];
+import { getItem, saveItem } from 'lib/queryStorage/localStorage.client';
+import { IClientCacheItem, IUseQueryStorage, IQueryKey } from 'lib/queryStorage/client.cache.types';
 
 export default function useQueryStorage(id: string): IUseQueryStorage {
 	const queryKey = makePrefQueryKey(id);
@@ -42,7 +29,7 @@ export default function useQueryStorage(id: string): IUseQueryStorage {
 	);
 
 	const setPreference = useCallback(
-		(newPref: any) => {
+		<Type>(newPref: Type[]) => {
 			saveItem(id, newPref);
 			queryClient.invalidateQueries(queryKey).catch(console.log);
 		},
