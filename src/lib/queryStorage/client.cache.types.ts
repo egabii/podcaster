@@ -11,7 +11,7 @@ export interface IClientCacheItem {
 
 export interface IUseQueryStorage {
 	storageData: IClientCacheItem;
-	setPreference: <Type>(newPref: Type[] | Type) => void
+	setPreference: <Type>(newPref: Type[] | Type) => void;
 }
 
 export type IQueryKey = [string[], IQueryID];

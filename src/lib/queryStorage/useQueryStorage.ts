@@ -2,7 +2,11 @@ import { useCallback } from 'react';
 import { useQuery, useQueryClient } from 'react-query';
 import dayjs from 'dayjs';
 import { getItem, saveItem } from 'lib/queryStorage/localStorage.client';
-import { IClientCacheItem, IUseQueryStorage, IQueryKey } from 'lib/queryStorage/client.cache.types';
+import {
+	IClientCacheItem,
+	IUseQueryStorage,
+	IQueryKey,
+} from 'lib/queryStorage/client.cache.types';
 
 export default function useQueryStorage(id: string): IUseQueryStorage {
 	const queryKey = makePrefQueryKey(id);

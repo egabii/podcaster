@@ -1,4 +1,7 @@
-import { IClientCacheItem, defaultEmptyItemStringify } from './client.cache.types';
+import {
+	IClientCacheItem,
+	defaultEmptyItemStringify,
+} from './client.cache.types';
 import dayjs from 'dayjs';
 
 export function getItem(keyMapper: string): IClientCacheItem {
