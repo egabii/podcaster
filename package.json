@@ -9,7 +9,8 @@
 		"preview": "vite preview",
 		"format": "prettier --write .",
 		"lint": "eslint --fix . --ext .js,.jsx,.ts,.tsx",
-		"test": "jest"
+		"test": "jest",
+		"cruiser:graph": "depcruise src --include-only \"^src\" --config --output-type dot | dot -T svg > ./deps-graph/dependency-graph.svg"
 	},
 	"dependencies": {
 		"@chakra-ui/react": "^2.3.2",
@@ -35,6 +36,7 @@
 		"@types/react-dom": "^18.0.6",
 		"@typescript-eslint/eslint-plugin": "^5.37.0",
 		"@vitejs/plugin-react": "^2.1.0",
+		"dependency-cruiser": "^11.16.1",
 		"eslint": "^8.23.1",
 		"eslint-config-prettier": "^8.5.0",
 		"eslint-config-standard-with-typescript": "^23.0.0",
