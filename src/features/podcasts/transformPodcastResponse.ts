@@ -4,7 +4,7 @@ import {
 	IPodcastFeedResponse,
 	IPodcastEntryResponse,
 	IPodcastImageResponse,
-} from 'features/podcasts/podcasts.type';
+} from 'types/podcasts.type';
 
 export const transformPodcastResponse = (
 	podcastResponse: IPodcastFeedResponse

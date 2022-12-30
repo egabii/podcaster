@@ -1,8 +1,8 @@
 import { useQuery } from 'react-query';
-import useQueryStorage from '../../lib/queryStorage/useQueryStorage';
+import { useQueryStorage } from 'lib/queryStorage';
 import fetchEpisodes from 'features/episodes/fetchEpisodes';
-import { IQueryHookBooleans } from '../../types/queries.hook.type';
-import { IEpisodesList } from 'features/episodes/episodes.type';
+import { IQueryHookBooleans } from 'types/queries.hook.type';
+import { IEpisodesList } from 'types/episodes.type';
 import { useEffect } from 'react';
 
 interface IEpisodeQuery extends IQueryHookBooleans {

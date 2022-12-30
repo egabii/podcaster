@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import { IPodcastItem } from 'features/podcasts/podcasts.type';
+import { IPodcastItem } from 'types/podcasts.type';
 import { podcastUIMockData } from 'tests-utils/mocks/podcast.mock';
 import { AllTheProviders } from 'tests-utils/AllTheProviders';
 import PodcastCard from 'ui/PodcastCard';

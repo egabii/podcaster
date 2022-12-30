@@ -6,8 +6,8 @@ import { useParams, Link } from 'react-router-dom';
 import { createColumnHelper } from '@tanstack/react-table';
 import { DataTable } from 'ui/DataTable';
 import ContainerLayout from 'ui/ContainerLayout';
-import { IPodcastItem } from 'features/podcasts/podcasts.type';
-import { IEpisode } from 'features/episodes/episodes.type';
+import { IPodcastItem } from 'types/podcasts.type';
+import { IEpisode } from 'types/episodes.type';
 import useEpisodes from 'features/episodes/useEpisodes';
 import usePodcasts from 'features/podcasts/usePodcasts';
 

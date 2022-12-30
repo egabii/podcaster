@@ -1,7 +1,7 @@
 import { SetStateAction, useEffect, useState } from 'react';
 import { Badge, Box, Flex, Input, SimpleGrid } from '@chakra-ui/react';
 import ContainerLayout from 'ui/ContainerLayout';
-import { IPodcastList } from 'features/podcasts/podcasts.type';
+import { IPodcastList } from 'types/podcasts.type';
 import PodcastCard from 'ui/PodcastCard';
 import usePodcasts from 'features/podcasts/usePodcasts';
 

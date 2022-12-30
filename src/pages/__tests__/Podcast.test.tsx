@@ -6,7 +6,7 @@ import useEpisodes from 'features/episodes/useEpisodes';
 import { AllTheProviders } from 'tests-utils/AllTheProviders';
 import { podcastUIMockData } from 'tests-utils/mocks/podcast.mock';
 import { episodesUIMockData } from 'tests-utils/mocks/episodes.mock';
-import { IEpisodesList } from 'features/episodes/episodes.type';
+import { IEpisodesList } from 'types/episodes.type';
 
 jest.mock('features/podcasts/usePodcasts');
 jest.mock('features/episodes/useEpisodes');

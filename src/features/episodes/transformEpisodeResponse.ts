@@ -1,7 +1,7 @@
 import {
 	IEpisodesList,
 	IEpisodeItemXML,
-} from 'features/episodes/episodes.type';
+} from 'types/episodes.type';
 import { XMLParser } from 'fast-xml-parser';
 
 export const transformEpisodeResponse = (
